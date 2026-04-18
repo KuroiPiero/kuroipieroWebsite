@@ -1,0 +1,838 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>kuroipiero</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Special+Elite&family=DM+Mono:wght@300;400&family=Cormorant+Garamond:ital,wght@0,300;0,400;1,300;1,400&display=swap" rel="stylesheet">
+<style>
+*{box-sizing:border-box;margin:0;padding:0;}
+
+:root{
+  --ink:     #13100d;
+  --paper:   #1c1812;
+  --warm:    #241f17;
+  --warmer:  #2e2718;
+  --crimson: #8b1a1a;
+  --crim2:   #b02020;
+  --ember:   #c8832a;
+  --gold:    #b8962a;
+  --cream:   #e8dcc8;
+  --fog:     #baa890;
+  --dim:     #9a8e7e;
+  --border:  rgba(200,160,80,0.1);
+  --border2: rgba(200,160,80,0.2);
+}
+
+html{scroll-behavior:smooth;}
+
+body{
+  background:var(--ink);
+  color:var(--fog);
+  font-family:'Cormorant Garamond',serif;
+  font-size:18px;
+  font-weight:300;
+  line-height:1.8;
+  overflow-x:hidden;
+  min-height:100vh;
+  /* warm candlelight gradient */
+  background-image:
+    radial-gradient(ellipse at 30% 20%, rgba(180,100,20,0.07) 0%,transparent 55%),
+    radial-gradient(ellipse at 80% 80%, rgba(120,20,20,0.06) 0%,transparent 45%),
+    radial-gradient(ellipse at 10% 90%, rgba(180,120,20,0.04) 0%,transparent 40%);
+}
+
+/* parchment texture */
+body::before{
+  content:'';position:fixed;inset:0;z-index:0;
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='400' height='400'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='400' height='400' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  pointer-events:none;
+}
+
+/* vignette */
+body::after{
+  content:'';position:fixed;inset:0;z-index:0;
+  background:radial-gradient(ellipse at 50% 40%,transparent 30%,rgba(0,0,0,0.5) 100%);
+  pointer-events:none;
+}
+
+a{color:var(--ember);text-decoration:none;border-bottom:1px solid transparent;transition:all .3s;}
+a:hover{color:var(--cream);border-bottom-color:var(--ember);}
+
+.page{position:relative;z-index:1;}
+
+/* ── OPENING ── */
+.opening{
+  min-height:100vh;
+  display:flex;
+  flex-direction:column;
+  justify-content:center;
+  padding:80px 10vw;
+  position:relative;
+}
+
+/* scattered bg letters */
+.bg-letter{
+  position:absolute;
+  font-family:'Playfair Display',serif;
+  font-weight:700;
+  font-style:italic;
+  color:rgba(180,100,20,0.03);
+  pointer-events:none;
+  user-select:none;
+  line-height:1;
+}
+.bg-letter.l1{font-size:40vw;top:-5%;left:-5%;}
+.bg-letter.l2{font-size:20vw;bottom:0%;right:0%;color:rgba(120,20,20,0.03);}
+
+.open-label{
+  font-family:'DM Mono',monospace;
+  font-size:13px;
+  letter-spacing:3px;
+  text-transform:uppercase;
+  color:var(--dim);
+  margin-bottom:32px;
+  display:flex;align-items:center;gap:16px;
+}
+.open-label::before{
+  content:'';display:block;
+  width:48px;height:1px;
+  background:linear-gradient(to right,var(--crimson),transparent);
+}
+
+.open-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(48px,9vw,120px);
+  font-weight:700;
+  line-height:0.95;
+  letter-spacing:-2px;
+  color:var(--cream);
+  margin-bottom:8px;
+}
+.open-title .red{
+  color:var(--crimson);
+  font-style:italic;
+  display:block;
+}
+
+.open-typewriter{
+  font-family:'Special Elite',cursive;
+  font-size:clamp(14px,2vw,20px);
+  color:var(--dim);
+  margin-top:32px;
+  margin-bottom:48px;
+  min-height:1.5em;
+  letter-spacing:0.5px;
+}
+.cursor-blink{
+  display:inline-block;
+  width:2px;height:1em;
+  background:var(--ember);
+  vertical-align:middle;
+  margin-left:2px;
+  animation:blink 1s step-end infinite;
+}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0;}}
+
+.open-cooking{
+  font-family:'Special Elite',cursive;
+  font-size:16px;
+  color:var(--crimson);
+  letter-spacing:2px;
+  margin-bottom:48px;
+  opacity:.8;
+  animation:cooking-glow 3s ease-in-out infinite;
+}
+@keyframes cooking-glow{
+  0%,100%{opacity:.6;}
+  50%{opacity:1;}
+}
+.open-scroll{
+  font-family:'DM Mono',monospace;
+  font-size:13px;
+  letter-spacing:2px;
+  text-transform:uppercase;
+  color:var(--dim);
+  display:flex;align-items:center;gap:12px;
+  margin-top:auto;
+  padding-top:64px;
+}
+.scroll-line{
+  width:1px;height:60px;
+  background:linear-gradient(to bottom,var(--ember),transparent);
+  animation:scroll-pulse 2s ease-in-out infinite;
+}
+@keyframes scroll-pulse{0%,100%{opacity:.4;}50%{opacity:1;}}
+
+/* ── FOOL CARD SECTION ── */
+.card-scene{
+  min-height:auto;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  padding:80px 10vw;
+  gap:80px;
+  flex-wrap:wrap;
+  overflow:visible;
+}
+
+/* THE CARD */
+.fool-card{
+  width:280px;height:420px;
+  flex-shrink:0;
+  position:relative;
+  animation:card-float 7s ease-in-out infinite;
+  cursor:pointer;
+  perspective:1000px;
+  -webkit-tap-highlight-color:transparent;
+  touch-action:auto;
+}
+@keyframes card-float{
+  0%,100%{transform:rotate(-3deg) translateY(0);}
+  25%{transform:rotate(2deg) translateY(-16px);}
+  50%{transform:rotate(-1.5deg) translateY(-8px);}
+  75%{transform:rotate(3deg) translateY(-20px);}
+}
+
+.card-inner{
+  width:100%;height:100%;
+  position:relative;
+  transform-style:preserve-3d;
+  transition:transform .8s cubic-bezier(.23,1,.32,1);
+  touch-action:auto;
+}
+.fool-card.flipped .card-inner{transform:rotateY(180deg);}
+
+.card-face,.card-back{
+  position:absolute;inset:0;
+  backface-visibility:hidden;
+  background:var(--paper);
+  border:1px solid var(--border2);
+  padding:32px 24px;
+  display:flex;flex-direction:column;
+  align-items:center;justify-content:center;
+  text-align:center;
+  overflow:hidden;
+}
+.card-back{transform:rotateY(180deg);background:var(--warm);}
+
+/* card decoration */
+.card-face::before,.card-face::after{
+  content:'';position:absolute;
+  border:1px solid rgba(200,160,80,0.12);
+  inset:10px;pointer-events:none;
+}
+.card-face::after{inset:14px;border-color:rgba(200,160,80,0.06);}
+
+.card-corner{
+  position:absolute;
+  font-family:'Cormorant Garamond',serif;
+  font-size:13px;
+  color:var(--dim);line-height:1.2;
+}
+.card-corner.tl{top:16px;left:18px;text-align:left;}
+.card-corner.br{bottom:16px;right:18px;text-align:right;transform:rotate(180deg);}
+.card-corner .suit{font-size:18px;display:block;color:var(--crimson);}
+
+.card-jester{
+  font-size:52px;
+  margin-bottom:16px;
+  filter:saturate(0.7);
+  animation:jester-bob 3s ease-in-out infinite;
+}
+@keyframes jester-bob{
+  0%,100%{transform:rotate(-5deg);}
+  50%{transform:rotate(5deg);}
+}
+
+.card-name{
+  font-family:'Playfair Display',serif;
+  font-size:28px;font-weight:700;font-style:italic;
+  color:var(--cream);line-height:1.1;
+  margin-bottom:8px;
+}
+.card-name em{color:var(--crimson);}
+.card-divider{
+  width:80%;height:1px;
+  background:linear-gradient(to right,transparent,var(--crimson),transparent);
+  margin:14px 0;
+}
+.card-role{
+  font-family:'DM Mono',monospace;
+  font-size:12px;letter-spacing:2px;
+  text-transform:uppercase;color:var(--dim);
+  margin-bottom:12px;
+}
+.card-suits{
+  font-size:18px;letter-spacing:10px;
+  color:var(--fog);opacity:.6;
+}
+.card-hint{
+  font-family:'DM Mono',monospace;
+  font-size:11px;letter-spacing:1px;
+  text-transform:uppercase;
+  color:var(--dim);opacity:.5;
+  position:absolute;bottom:48px;
+  animation:hint-pulse 2s ease-in-out infinite;
+}
+@keyframes hint-pulse{0%,100%{opacity:.3;}50%{opacity:.6;};}
+
+/* card back content */
+.cb-title{
+  font-family:'Playfair Display',serif;
+  font-style:italic;font-size:16px;
+  color:var(--fog);margin-bottom:20px;
+}
+.cb-list{
+  list-style:none;width:100%;
+  display:flex;flex-direction:column;gap:10px;
+}
+.cb-list li{
+  font-family:'Special Elite',cursive;
+  font-size:15px;color:var(--dim);
+  padding:8px 12px;
+  border-left:2px solid var(--crimson);
+  text-align:left;
+  background:rgba(200,131,42,0.04);
+}
+.cb-list li span{color:var(--ember);}
+
+/* card scene text */
+.card-scene-text{max-width:400px;}
+.cst-label{
+  font-family:'DM Mono',monospace;
+  font-size:13px;letter-spacing:1.5px;
+  text-transform:uppercase;color:var(--crimson);
+  margin-bottom:20px;
+}
+.cst-heading{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(26px,3.5vw,42px);
+  font-weight:700;color:var(--cream);
+  line-height:1.15;letter-spacing:-0.5px;
+  margin-bottom:24px;
+}
+.cst-heading em{color:var(--crimson);font-style:italic;}
+.cst-body{
+  font-size:18px;line-height:1.9;
+  color:var(--fog);
+}
+.cst-body p+p{margin-top:16px;}
+
+/* ── PINBOARD SECTION ── */
+.pinboard{
+  padding:100px 8vw;
+  position:relative;
+  min-height:100vh;
+}
+.pinboard-title{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(22px,3vw,36px);
+  font-weight:400;font-style:italic;
+  color:var(--cream);
+  margin-bottom:72px;
+  opacity:1;
+  text-align:center;
+}
+
+/* scattered notes */
+.notes-scatter{
+  position:relative;
+  min-height:900px;
+}
+
+.note{
+  position:absolute;
+  background:var(--paper);
+  border:1px solid var(--border);
+  padding:24px 22px 28px;
+  font-family:'Special Elite',cursive;
+  font-size:15px;line-height:1.75;
+  color:var(--fog);
+  max-width:280px;
+  transition:transform .3s, box-shadow .3s, z-index 0s;
+  cursor:default;
+  z-index:1;
+}
+.note:hover{
+  z-index:10;
+  box-shadow:0 20px 60px rgba(0,0,0,0.6);
+}
+
+/* pin */
+.note::before{
+  content:'●';
+  position:absolute;top:-10px;left:50%;
+  transform:translateX(-50%);
+  font-size:16px;
+  color:var(--crimson);
+  filter:drop-shadow(0 2px 4px rgba(0,0,0,0.5));
+}
+
+.note-title{
+  font-family:'Playfair Display',serif;
+  font-style:italic;font-size:17px;
+  color:var(--cream);margin-bottom:10px;
+  display:block;
+}
+.note-tag{
+  display:inline-block;
+  font-family:'DM Mono',monospace;
+  font-size:12px;letter-spacing:0.5px;
+  color:var(--crim2);
+  margin-top:12px;
+  border-top:1px solid var(--border);
+  padding-top:8px;
+  width:100%;
+}
+
+/* note positions — intentionally scattered */
+.note.n1{top:0;   left:2%;   transform:rotate(-2.5deg);}
+.note.n2{top:30px;left:30%;  transform:rotate(1.8deg);}
+.note.n3{top:0;   right:4%;  transform:rotate(-1.2deg);}
+.note.n4{top:340px;left:8%;  transform:rotate(2.2deg);}
+.note.n5{top:320px;left:36%; transform:rotate(-1.5deg);}
+.note.n6{top:360px;right:2%; transform:rotate(1deg);}
+.note.n7{top:640px;left:18%; transform:rotate(-2deg);}
+.note.n8{top:650px;right:10%;transform:rotate(1.5deg);}
+
+.note:hover{transform:rotate(0deg) scale(1.03) !important;}
+
+/* red string connectors (decorative) */
+.string{
+  position:absolute;
+  pointer-events:none;
+  opacity:.15;
+}
+
+/* ── QUOTE WALL ── */
+.quote-wall{
+  padding:120px 10vw;
+  text-align:center;
+  position:relative;
+  border-top:1px solid var(--border);
+  border-bottom:1px solid var(--border);
+}
+.quote-wall::before{
+  content:'"';
+  font-family:'Playfair Display',serif;
+  font-size:200px;font-weight:700;
+  color:var(--crimson);opacity:.05;
+  position:absolute;top:20px;left:6vw;
+  line-height:1;
+}
+blockquote{
+  font-family:'Playfair Display',serif;
+  font-style:italic;
+  font-size:clamp(20px,3.5vw,38px);
+  line-height:1.5;
+  color:var(--cream);
+  max-width:700px;margin:0 auto;
+  position:relative;z-index:1;
+}
+cite{
+  display:block;margin-top:28px;
+  font-family:'DM Mono',monospace;
+  font-style:normal;font-size:14px;
+  color:var(--dim);letter-spacing:1px;
+  text-transform:uppercase;
+}
+cite::before{content:'— ';}
+
+/* ── STATS ROW ── */
+.stats-row{
+  display:flex;
+  justify-content:space-around;
+  align-items:center;
+  padding:80px 10vw;
+  gap:40px;flex-wrap:wrap;
+  border-bottom:1px solid var(--border);
+}
+.stat{text-align:center;}
+.stat-num{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(36px,5vw,64px);
+  font-weight:700;font-style:italic;
+  color:var(--crimson);
+  line-height:1;margin-bottom:8px;
+  display:block;
+}
+.stat-label{
+  font-family:'DM Mono',monospace;
+  font-size:13px;letter-spacing:1px;
+  text-transform:uppercase;color:var(--dim);
+}
+
+/* ── CONTACT ── */
+.contact-section{
+  padding:100px 10vw;
+  display:grid;
+  grid-template-columns:1fr 1fr;
+  gap:80px;align-items:start;
+}
+.contact-heading{
+  font-family:'Playfair Display',serif;
+  font-size:clamp(30px,4vw,52px);
+  font-weight:700;color:var(--cream);
+  line-height:1.15;letter-spacing:-0.5px;
+  margin-bottom:24px;
+}
+.contact-heading em{color:var(--crimson);font-style:italic;}
+.contact-desc{font-size:17px;line-height:1.9;color:var(--fog);}
+
+.contact-items{
+  display:flex;flex-direction:column;gap:1px;
+  background:var(--border);
+}
+.ci{
+  background:var(--paper);
+  padding:22px 24px;
+  display:flex;justify-content:space-between;align-items:center;
+  transition:background .3s;
+  text-decoration:none;
+}
+.ci:hover{background:var(--warm);}
+.ci-label{
+  font-family:'DM Mono',monospace;
+  font-size:13px;font-weight:400;
+  letter-spacing:1px;text-transform:uppercase;
+  color:var(--dim);
+}
+.ci-val{
+  font-family:'Special Elite',cursive;
+  font-size:15px;color:var(--fog);
+}
+.ci-arrow{color:var(--crimson);font-size:16px;}
+
+/* ── FOOTER ── */
+.site-footer{
+  padding:48px 10vw;
+  border-top:1px solid var(--border);
+  display:flex;justify-content:space-between;
+  align-items:center;flex-wrap:wrap;gap:20px;
+}
+.footer-logo{
+  font-family:'Playfair Display',serif;
+  font-size:20px;font-weight:700;font-style:italic;
+  color:var(--fog);
+}
+.footer-logo em{color:var(--crimson);}
+.footer-copy{
+  font-family:'DM Mono',monospace;
+  font-size:13px;letter-spacing:0.5px;
+  color:var(--dim);
+}
+
+/* ── SCROLL REVEAL ── */
+.sr{opacity:0;transform:translateY(28px);transition:opacity .8s ease,transform .8s ease;}
+.sr.show{opacity:1;transform:none;}
+.d1{transition-delay:.1s;}.d2{transition-delay:.2s;}.d3{transition-delay:.3s;}.d4{transition-delay:.4s;}
+
+/* ── RESPONSIVE ── */
+@media(max-width:760px){
+  .opening{padding:80px 6vw;}
+  .card-scene{padding:60px 6vw;flex-direction:column;align-items:center;}
+  .pinboard{padding:80px 6vw;}
+  .notes-scatter{min-height:auto;display:flex;flex-direction:column;gap:24px;position:static;}
+  .note{position:static !important;transform:none !important;max-width:100%;}
+  .note:hover{transform:none !important;}
+  .contact-section{grid-template-columns:1fr;padding:80px 6vw;gap:48px;}
+  .stats-row{padding:60px 6vw;}
+  .quote-wall{padding:80px 6vw;}
+  .site-footer{padding:40px 6vw;flex-direction:column;text-align:center;}
+}
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- ── OPENING ── -->
+  <section class="opening">
+    <div class="bg-letter l1">K</div>
+    <div class="bg-letter l2">P</div>
+
+    <div class="open-label">sometime around 4am, somewhere in the desert.</div>
+
+    <h1 class="open-title">
+      kuroi
+      <span class="red">piero.</span>
+    </h1>
+
+    <div class="open-typewriter" id="typewriter"></div>
+
+    <div class="open-cooking">something is always cooking.</div>
+    <div class="open-scroll">
+      <div class="scroll-line"></div>
+      scroll down
+    </div>
+  </section>
+
+  <!-- ── FOOL CARD ── -->
+  <section class="card-scene">
+
+    <div class="fool-card" id="foolcard">
+      <div class="card-inner" id="cardinner">
+
+        <!-- FRONT -->
+        <div class="card-face">
+          <div class="card-corner tl">KP<span class="suit">♠</span></div>
+          <div class="card-corner br">KP<span class="suit">♥</span></div>
+          <div class="card-jester">🃏</div>
+          <div class="card-name"><em>kuroi</em>piero</div>
+          <div class="card-divider"></div>
+          <div class="card-role">the court fool</div>
+          <div class="card-suits">♠ ♦ ♣ ♥</div>
+          <div class="card-hint">click to reveal</div>
+        </div>
+
+        <!-- BACK -->
+        <div class="card-back">
+          <div class="cb-title">the fool carries:</div>
+          <ul class="cb-list">
+            <li><span>Day —</span> respiratory therapy student</li>
+            <li><span>Night —</span> writer, builder, tinkerer</li>
+            <li><span>Always —</span> speaks in riddles</li>
+            <li><span>Writing —</span> Rebellya</li>
+            <li><span>Learning —</span> Linux, drawing</li>
+            <li><span>Dreaming —</span> one bag, open road</li>
+          </ul>
+        </div>
+
+      </div>
+    </div>
+
+    <div class="card-scene-text sr">
+      <div class="cst-label">about the name</div>
+      <h2 class="cst-heading">
+        The black fool<br>who speaks in <em>riddles.</em>
+      </h2>
+      <div class="cst-body">
+        <p>
+          <strong style="color:var(--cream);">Kuroi</strong> — Japanese for black.
+          <strong style="color:var(--cream);">Piero</strong> — not the birthday clown.
+          The court fool. The one who knows everything and says it sideways.
+        </p>
+        <p>
+          The jester who tells the king exactly what he needs to hear,
+          wrapped in a joke so he doesn't flinch.
+          The one in the corner nobody takes seriously —
+          even when saying the only important thing in the room.
+        </p>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ── PINBOARD ── -->
+  <section class="pinboard">
+    <div class="pinboard-title sr">things pinned to the wall</div>
+
+    <div class="notes-scatter">
+
+      <div class="note n1 sr">
+        <span class="note-title">Rebellya</span>
+        An island that runs on stolen goods and slaves. Fog on the ruins side. 
+        A half-elf who killed a wizard and somehow ended up with two little girls he never planned for.
+        A noble woman with nowhere to return to.
+        Found family — not by choice. By necessity.
+        <div class="note-tag">writing · in progress</div>
+      </div>
+
+      <div class="note n2 sr d1">
+        <span class="note-title">By day</span>
+        Respiratory therapy student.
+        Learning how lungs work.
+        Learning to keep people breathing.
+        <div class="note-tag">medicine · ongoing</div>
+      </div>
+
+      <div class="note n3 sr d2">
+        <span class="note-title">Linux log</span>
+        Arch attempt #1: failed.<br>
+        Arch attempt #2: also failed.<br>
+        Arch attempt #3: somehow worse.<br>
+        Currently: Mint. Getting somewhere.
+        <div class="note-tag">tech · ongoing</div>
+      </div>
+
+      <div class="note n4 sr d1">
+        <span class="note-title">Drawing</span>
+        The hand is slower than the mind.
+        That gap is intolerable.
+        Teaching it to catch up.
+        <div class="note-tag">art · ongoing</div>
+      </div>
+
+      <div class="note n5 sr d2">
+        <span class="note-title">From the draft —</span>
+        "I'm a monster too."
+        <br><br>
+        — Iyla, age 5.<br>
+        Said with a terrified smile.
+        <div class="note-tag">Rebellya · Iyla</div>
+      </div>
+
+      <div class="note n6 sr d3">
+        <span class="note-title">Backpacking</span>
+        One bag.<br>
+        One-way tickets.<br>
+        Find out what a place actually feels like from the inside.
+        <div class="note-tag">travel · planning</div>
+      </div>
+
+      <div class="note n7 sr d2">
+        <span class="note-title">Reading habit</span>
+        Didn't grow up a reader but I grew it myself<br>
+        Best thing I read: "it was the best of times, it was the worst of times, it was the age of wisdom, it was the age of foolishness..."<br>
+        Charls Dickens<br>
+        Best decision so far.
+        <div class="note-tag">habit · daily</div>
+      </div>
+
+      <div class="note n8 sr d3">
+        <span class="note-title">The fool counts</span>
+        Projects running: 5<br>
+        Arch fails: 3<br>
+        Story ideas: ∞<br>
+        Sleep schedule: bad
+        <div class="note-tag">stats · honest</div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ── QUOTE ── -->
+  <div class="quote-wall sr">
+    <blockquote>
+      The man who doesn't change will stay in the same place.
+      I don't know what's ahead —<br>
+      but I know I'm going to try hard.
+    </blockquote>
+    <cite>from the diary, somewhere around 3am</cite>
+  </div>
+
+  <!-- ── STATS ── -->
+  <div class="stats-row">
+    <div class="stat sr">
+      <span class="stat-num">5</span>
+      <span class="stat-label">active projects</span>
+    </div>
+    <div class="stat sr d1">
+      <span class="stat-num">3×</span>
+      <span class="stat-label">Arch install failures</span>
+    </div>
+    <div class="stat sr d2">
+      <span class="stat-num">∞</span>
+      <span class="stat-label">story ideas</span>
+    </div>
+    <div class="stat sr d3">
+      <span class="stat-num">bad</span>
+      <span class="stat-label">sleep schedule</span>
+    </div>
+  </div>
+
+  <!-- ── CONTACT ── -->
+  <div class="contact-section">
+    <div class="sr">
+      <h2 class="contact-heading">
+        The<br><em>door</em> is open.
+      </h2>
+      <p class="contact-desc">
+        If something here caught your eye, or you're just curious what's being built 
+        speak up. The fool responds to all who knock.
+        maybe not quickly But always, eventually.
+      </p>
+    </div>
+    <div class="contact-items sr d1">
+      <a href="mailto:kuroipiero76@gmail.com" class="ci">
+        <span class="ci-label">Email</span>
+        <span class="ci-val">kuroipiero76@gmail.com</span>
+        <span class="ci-arrow">↗</span>
+      </a>
+      <a href="https://x.com/jackuro_" target="_blank" class="ci">
+        <span class="ci-label">X / Twitter</span>
+        <span class="ci-val">@jackuro_</span>
+        <span class="ci-arrow">↗</span>
+      </a>
+      <div class="ci" style="cursor:default;">
+        <span class="ci-label">Discord</span>
+        <span class="ci-val">rossoneri76</span>
+      </div>
+      <div class="ci" style="cursor:default;">
+        <span class="ci-label">Status</span>
+        <span class="ci-val" style="color:#4ecf80;">● online, late hours</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── FOOTER ── -->
+  <footer class="site-footer">
+    <div class="footer-logo"><em>kuroi</em>piero</div>
+    <div class="footer-copy">© 2026 kuroipiero.com · built late at night · something is always cooking</div>
+  </footer>
+
+</div>
+
+<script>
+/* ── TYPEWRITER ── */
+const lines = [
+  "speaks in riddles. nobody listens. the words stay.",
+  "by day: respiratory therapy student.",
+  "by night: the court fool builds things in the dark.",
+  "something is always cooking.",
+];
+let li = 0, ci = 0, deleting = false, pause = 0;
+const tw = document.getElementById('typewriter');
+tw.innerHTML = '<span class="cursor-blink"></span>';
+
+function type(){
+  if(pause > 0){ pause--; setTimeout(type, 50); return; }
+  const line = lines[li];
+  if(!deleting){
+    ci++;
+    tw.innerHTML = line.slice(0,ci) + '<span class="cursor-blink"></span>';
+    if(ci === line.length){ deleting = true; pause = 60; setTimeout(type,50); return; }
+  } else {
+    ci--;
+    tw.innerHTML = line.slice(0,ci) + '<span class="cursor-blink"></span>';
+    if(ci === 0){ deleting = false; li = (li+1)%lines.length; pause = 15; setTimeout(type,50); return; }
+  }
+  setTimeout(type, deleting ? 28 : 65);
+}
+setTimeout(type, 800);
+
+/* ── FOOL CARD FLIP ── */
+const fc = document.getElementById('foolcard');
+const ci2 = document.getElementById('cardinner');
+let floating = true;
+
+fc.addEventListener('click',()=>{
+  fc.classList.toggle('flipped');
+  if(fc.classList.contains('flipped')){
+    fc.style.animation='none';
+    fc.style.transform='rotate(0deg) scale(1.03)';
+    floating = false;
+    // never lock scroll — user can always scroll away
+  } else {
+    fc.style.transform='';
+    setTimeout(()=>{
+      fc.style.animation='card-float 7s ease-in-out infinite';
+      floating = true;
+    },300);
+  }
+});
+fc.addEventListener('mouseenter',()=>{ if(floating) fc.style.animationPlayState='paused'; });
+fc.addEventListener('mouseleave',()=>{ if(floating) fc.style.animationPlayState='running'; });
+
+/* ── SCROLL REVEAL ── */
+const io = new IntersectionObserver(entries=>{
+  entries.forEach(e=>{
+    if(e.isIntersecting){e.target.classList.add('show');io.unobserve(e.target);}
+  });
+},{threshold:0.08,rootMargin:'0px 0px -20px 0px'});
+document.querySelectorAll('.sr').forEach(el=>io.observe(el));
+</script>
+
+</body>
+</html>
