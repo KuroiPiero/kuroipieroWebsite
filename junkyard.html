@@ -1,0 +1,664 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Junkyard — kuroipiero</title>
+
+<link rel="icon" href="data:image/webp;base64,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">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Neonderthaw&family=Permanent+Marker&family=Saira+Stencil+One&family=Space+Grotesk:wght@400;500;700&display=swap" rel="stylesheet">
+
+<style>
+/* ══════════════════════════════════════════════════════
+   HEADQUARTERS — change anything here, it changes everywhere
+   ══════════════════════════════════════════════════════ */
+:root{
+  --near-black-blue: #000216;   /* the void — page background   */
+  --sea-blue:        #1791B1;   /* main neon                    */
+  --byzantium:       #602455;   /* purple grime                 */
+  --glowing-pink:    #ff009d;   /* hot pink accent              */
+  --royal:           #0f9e50;   /* Al-Ahli green                */
+  --royal-shade:     #32f03c;   /* Al-Ahli glow                 */
+
+  --alice-blue:      #eaf6ff;   /* white-hot spark core         */
+  --light-blue:      #9fd0de;   /* spark halo                   */
+  --dark-slate:      #14313c;   /* the dead 'n' letter          */
+  --ming:            #3f6e70;   /* dim label text               */
+  --air-force-blue:  #5f93a4;   /* marker handwriting           */
+
+  /* Same colors as RGB triplets, so translucent versions can use
+     them too:  rgba(var(--sea-blue-rgb), .2)  */
+  --sea-blue-rgb:      23,145,177;
+  --byzantium-rgb:     96,36,85;
+  --glowing-pink-rgb:  255,0,157;
+  --royal-shade-rgb:   50,240,60;
+  --light-blue-rgb:    159,208,222;
+
+  /* Dials */
+  --glow:    26px;      /* neon glow size                       */
+  --grime:   .7;        /* dirt layer strength, 0 to 1          */
+  --flicker: running;   /* set to 'paused' to freeze everything */
+}
+
+*{box-sizing:border-box;}
+html,body{margin:0;padding:0;background:var(--near-black-blue);}
+a{color:var(--sea-blue);text-decoration:none;}
+a:hover{color:var(--glowing-pink);}
+::selection{background:var(--glowing-pink);color:var(--near-black-blue);}
+
+/* One switch for every animation on the page */
+.junkyard,.junkyard *{animation-play-state:var(--flicker);}
+
+
+/* ══════════════════════════════════════════════════════
+   ANIMATIONS
+   ══════════════════════════════════════════════════════ */
+
+/* healthy tube — mostly lit, occasional stutter */
+@keyframes flick{
+  0%,7%,9%,23%,26%,52%,55%,78%,100%{opacity:1}
+  8%{opacity:.2}  10%{opacity:.75}
+  24%{opacity:.3} 25%{opacity:.9}
+  53%{opacity:.15} 54%{opacity:.8}
+  79%{opacity:.35} 80%{opacity:1}
+}
+
+/* dying tube — mostly dark, rare desperate flashes */
+@keyframes dying{
+  0%,2%,5%,28%,31%,58%,61%,100%{opacity:.14}
+  3%{opacity:.95} 4%{opacity:.2}
+  29%{opacity:.85} 30%{opacity:.18}
+  59%{opacity:1}  60%{opacity:.35}
+  74%{opacity:.9} 75%{opacity:.14}
+}
+
+/* electrical buzz */
+@keyframes buzz{
+  0%,100%{opacity:.7} 42%{opacity:1} 45%{opacity:.35} 48%{opacity:1}
+}
+
+/* the whole sign swinging on its rods */
+@keyframes sway{
+  0%,100%{transform:rotate(-2.4deg)} 50%{transform:rotate(-1.6deg)}
+}
+
+/* spark popping at a loose connection */
+@keyframes spark{
+  0%,100%{opacity:0; transform:scale(.4)}
+  2%{opacity:1; transform:scale(1.5)}
+  5%{opacity:.1; transform:scale(.7)}
+  7%{opacity:.9; transform:scale(1.2)}
+  9%{opacity:0; transform:scale(.5)}
+  41%{opacity:0}
+  43%{opacity:1; transform:scale(1.6)}
+  46%{opacity:0}
+}
+
+/* the arc flash around the spark */
+@keyframes arc{
+  0%,100%{opacity:0} 2%{opacity:1} 6%{opacity:.15} 8%{opacity:.8}
+  10%{opacity:0} 42%{opacity:0} 44%{opacity:1} 47%{opacity:0}
+}
+
+/* embers falling off the break */
+@keyframes fall{
+  0%{opacity:0; transform:translate(0,0) scale(1)}
+  4%{opacity:1}
+  100%{opacity:0; transform:translate(-14px,46px) scale(.3)}
+}
+
+/* the jester mask lit by the sparks below it */
+@keyframes clown{
+  0%,5%,9%,32%,36%,61%,65%,88%,100%{opacity:.5;filter:grayscale(.5) brightness(.85) drop-shadow(0 8px 14px rgba(0,0,0,.9)) drop-shadow(0 0 14px rgba(var(--sea-blue-rgb),.75))}
+  6%{opacity:.16;filter:grayscale(.85) brightness(.4) drop-shadow(0 8px 14px rgba(0,0,0,.9))}
+  8%{opacity:.66;filter:grayscale(.2) brightness(1.25) drop-shadow(0 0 22px rgba(var(--light-blue-rgb),.95))}
+  33%{opacity:.12;filter:grayscale(.9) brightness(.35) drop-shadow(0 8px 14px rgba(0,0,0,.9))}
+  35%{opacity:.7;filter:grayscale(.15) brightness(1.4) drop-shadow(0 0 26px rgba(var(--glowing-pink-rgb),.8))}
+  62%{opacity:.2;filter:grayscale(.8) brightness(.45) drop-shadow(0 8px 14px rgba(0,0,0,.9))}
+  64%{opacity:.62;filter:grayscale(.25) brightness(1.2) drop-shadow(0 0 20px rgba(var(--sea-blue-rgb),.9))}
+  89%{opacity:.14;filter:grayscale(.9) brightness(.4) drop-shadow(0 8px 14px rgba(0,0,0,.9))}
+}
+
+/* the mask swinging on its wire */
+@keyframes hang{
+  0%,100%{transform:rotate(-3.2deg)} 50%{transform:rotate(2.6deg)}
+}
+
+
+/* ══════════════════════════════════════════════════════
+   THE YARD ITSELF
+   ══════════════════════════════════════════════════════ */
+.junkyard{
+  position:relative;
+  min-height:100vh;
+  background:var(--near-black-blue);
+  overflow:hidden;
+  font-family:'IBM Plex Mono',monospace;
+}
+
+/* coloured dirt pooling in the corners */
+.grime{
+  position:absolute;inset:0;pointer-events:none;
+  opacity:var(--grime);
+  background:
+    radial-gradient(ellipse 40% 30% at 12% 78%, rgba(var(--byzantium-rgb),.45), transparent 70%),
+    radial-gradient(ellipse 35% 25% at 82% 22%, rgba(var(--sea-blue-rgb),.2), transparent 70%),
+    radial-gradient(ellipse 50% 40% at 65% 95%, rgba(15,158,80,.13), transparent 70%),
+    radial-gradient(ellipse 30% 22% at 30% 10%, rgba(var(--glowing-pink-rgb),.12), transparent 70%);
+}
+
+/* faint CRT scanlines, tilted so they don't look digital */
+.scanlines{
+  position:absolute;inset:0;pointer-events:none;opacity:.35;
+  background-image:repeating-linear-gradient(93deg, rgba(var(--light-blue-rgb),.04) 0 1px, transparent 1px 7px);
+}
+
+/* darkness pooling on the floor */
+.floor-fade{
+  position:absolute;left:0;right:0;bottom:0;height:46%;pointer-events:none;
+  background:linear-gradient(to top, rgba(0,1,10,.9), transparent);
+}
+
+/* black arcs overhead — cables/roofline silhouettes */
+.arc{position:absolute;pointer-events:none;border-bottom:3px solid #000;}
+.arc-1{top:58px;  left:8%;   width:44%; height:120px; border-radius:0 0 60% 40%; filter:drop-shadow(0 1px 0 rgba(var(--sea-blue-rgb),.16));}
+.arc-2{top:44px;  right:4%;  width:38%; height:170px; border-bottom-width:4px; border-radius:0 0 40% 55%; filter:drop-shadow(0 1px 0 rgba(var(--sea-blue-rgb),.16));}
+.arc-3{top:-20px; left:-6%;  width:34%; height:210px; border-radius:0 0 70% 30%; filter:drop-shadow(0 1px 0 rgba(var(--sea-blue-rgb),.14));}
+.arc-4{top:150px; left:26%;  width:52%; height:130px; border-bottom-width:2px; border-radius:0 0 45% 45%; filter:drop-shadow(0 1px 0 rgba(var(--sea-blue-rgb),.12));}
+.arc-5{top:320px; right:-8%; width:30%; height:150px; border-radius:0 0 30% 60%; filter:drop-shadow(0 1px 0 rgba(var(--sea-blue-rgb),.1));}
+
+/* thin cables dropping from the top edge */
+.wire{position:absolute;top:0;width:2px;pointer-events:none;background:#000;transform-origin:50% 0;}
+.wire-l{left:8%;  height:150px; transform:rotate(3deg);  box-shadow:1px 0 0 rgba(var(--sea-blue-rgb),.1);}
+.wire-r{right:7%; height:126px; transform:rotate(-4deg); box-shadow:-1px 0 0 rgba(var(--sea-blue-rgb),.1);}
+
+/* the sign's light bleeding into the sky */
+.sky-glow{
+  position:absolute;top:-90px;left:50%;width:1000px;height:420px;
+  transform:translateX(-50%);pointer-events:none;
+  background:radial-gradient(ellipse at center, rgba(var(--sea-blue-rgb),.16), transparent 66%);
+}
+
+.content{position:relative;min-height:100vh;padding:22px 5vw 140px;}
+
+
+/* ── status line, top left ── */
+.status{
+  display:flex;align-items:center;gap:9px;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;font-weight:500;line-height:1;
+  letter-spacing:.22em;text-transform:uppercase;
+  color:var(--ming);
+}
+.status-dot{
+  width:7px;height:7px;border-radius:50%;
+  background:var(--royal-shade);
+  box-shadow:0 0 10px var(--royal-shade), 0 0 22px rgba(var(--royal-shade-rgb),.5);
+  animation:buzz 2.6s infinite;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   THE SIGN
+   ══════════════════════════════════════════════════════ */
+.sign-rig{
+  position:relative;width:fit-content;margin:0 auto;padding-top:78px;
+  transform-origin:50% 0;
+  animation:sway 7s ease-in-out infinite;
+}
+
+/* the rods it hangs from */
+.rod{position:absolute;top:0;pointer-events:none;background:#000;}
+.rod-l{left:14%;  width:4px;height:82px; box-shadow:1px 0 0 rgba(var(--sea-blue-rgb),.2), -1px 0 3px rgba(0,0,0,.9);}
+.rod-r{right:14%; width:4px;height:82px; box-shadow:-1px 0 0 rgba(var(--sea-blue-rgb),.2), 1px 0 3px rgba(0,0,0,.9);}
+.rod-thin-l{left:38%;  width:2px;height:80px; box-shadow:1px 0 0 rgba(var(--sea-blue-rgb),.12);}
+.rod-thin-r{right:36%; width:2px;height:80px; box-shadow:-1px 0 0 rgba(var(--sea-blue-rgb),.12);}
+
+/* the bolts at the end of each rod */
+.bolt{
+  position:absolute;top:72px;width:16px;height:16px;pointer-events:none;
+  border-radius:50%;border:3px solid #000;
+  box-shadow:0 0 0 1px rgba(var(--sea-blue-rgb),.16), 0 4px 10px rgba(0,0,0,.9);
+}
+.bolt-l{left:14%;  margin-left:-6px;}
+.bolt-r{right:14%; margin-right:-6px;}
+
+/* sparks jumping at each bolt */
+.bolt-spark{
+  position:absolute;top:76px;width:4px;height:4px;pointer-events:none;
+  border-radius:50%;background:var(--alice-blue);
+}
+.bolt-spark-l{left:14%;  margin-left:-1px;
+  box-shadow:0 0 8px var(--light-blue), 0 0 22px rgba(var(--sea-blue-rgb),.85);
+  animation:spark 3.1s .8s infinite;}
+.bolt-spark-r{right:14%; margin-right:-1px;
+  box-shadow:0 0 8px var(--light-blue), 0 0 22px rgba(var(--glowing-pink-rgb),.6);
+  animation:spark 2.6s 1.4s infinite;}
+
+/* the broken bracket under the sign */
+.break-notch{
+  position:absolute;bottom:-1px;left:41%;z-index:4;
+  width:22px;height:9px;margin-left:-11px;pointer-events:none;
+  clip-path:polygon(0% 0%, 100% 0%, 72% 100%, 30% 62%);
+  background:#02050f;
+}
+
+/* the shower of sparks coming off the break */
+.sparks{position:absolute;bottom:-4px;left:41%;z-index:5;width:0;height:0;pointer-events:none;}
+.sparks div{position:absolute;}
+.spark-core{
+  left:-1px;top:-2px;width:5px;height:5px;border-radius:50%;
+  background:var(--alice-blue);
+  box-shadow:0 0 8px var(--light-blue), 0 0 20px rgba(var(--sea-blue-rgb),.9), 0 0 34px rgba(var(--glowing-pink-rgb),.5);
+  animation:spark 1.7s infinite;
+}
+.spark-green{
+  left:4px;top:1px;width:3px;height:3px;border-radius:50%;
+  background:#fff;
+  box-shadow:0 0 6px var(--royal-shade), 0 0 16px rgba(var(--royal-shade-rgb),.7);
+  animation:spark 2.3s .4s infinite;
+}
+.spark-arc{
+  left:-14px;top:-8px;width:30px;height:12px;
+  background:radial-gradient(ellipse at 50% 60%, rgba(var(--light-blue-rgb),.75), rgba(var(--sea-blue-rgb),.28) 45%, transparent 72%);
+  animation:arc 1.7s infinite;
+}
+.spark-fall-1{
+  left:1px;top:2px;width:2px;height:2px;border-radius:50%;
+  background:#dff2f8;box-shadow:0 0 6px rgba(var(--sea-blue-rgb),.9);
+  animation:fall 1.7s .05s infinite;
+}
+.spark-fall-2{
+  left:3px;top:2px;width:2px;height:2px;border-radius:50%;
+  background:#ff9ad8;box-shadow:0 0 6px rgba(var(--glowing-pink-rgb),.9);
+  animation:fall 2.3s .45s infinite;
+}
+
+/* the jester mask swinging under the break */
+.jester-hang{
+  position:absolute;top:100%;left:41%;z-index:3;
+  width:82px;margin-left:-41px;
+  transform-origin:50% 0;
+  animation:hang 9.4s ease-in-out infinite;
+}
+.jester-wire{
+  width:2px;height:62px;margin:0 auto;
+  background:linear-gradient(to bottom, #46647a, #24384a 55%, #16232f);
+}
+.jester-img{
+  width:82px;height:82px;
+  background-repeat:no-repeat;
+  background-position:center;
+  background-size:contain;
+  /* the picture itself is baked in at the bottom of this stylesheet */
+  opacity:.5;transform:rotate(19deg);
+  animation:clown 1.15s infinite steps(1,end);
+}
+
+/* the sign panel — the dented metal box */
+.sign-panel{
+  position:relative;width:fit-content;max-width:min(92vw,720px);margin:0 auto;
+  padding:10px 38px 24px;
+  clip-path:polygon(0.8% 5%, 99.2% 0%, 100% 92%, 54% 100%, 1% 95%);
+  background:linear-gradient(168deg, #071223 0%, #040a16 46%, #02050f 100%);
+  box-shadow:0 26px 70px rgba(0,0,0,.8), inset 0 0 90px rgba(0,0,0,.75);
+}
+.panel-tint{
+  position:absolute;inset:0;pointer-events:none;
+  background:
+    radial-gradient(ellipse 50% 60% at 24% 88%, rgba(var(--byzantium-rgb),.3), transparent 60%),
+    radial-gradient(ellipse 40% 50% at 86% 16%, rgba(var(--sea-blue-rgb),.14), transparent 60%);
+}
+.panel-grime{
+  position:absolute;inset:0;pointer-events:none;opacity:.55;
+  background-image:
+    repeating-linear-gradient(97deg, rgba(var(--light-blue-rgb),.045) 0 1px, transparent 1px 4px),
+    repeating-linear-gradient(4deg, rgba(0,0,0,.35) 0 2px, transparent 2px 9px),
+    repeating-radial-gradient(circle at 30% 40%, rgba(var(--byzantium-rgb),.09) 0 1px, transparent 1px 13px);
+}
+.panel-border{position:absolute;inset:8px;pointer-events:none;border:1px solid rgba(var(--sea-blue-rgb),.09);}
+
+/* the word itself */
+.sign-text{
+  position:relative;margin:0;text-align:center;
+  font-family:'Neonderthaw',cursive;
+  font-weight:400;
+  font-size:clamp(60px,11vw,148px);
+  line-height:1.14;
+  color:var(--sea-blue);
+  user-select:none;
+}
+/* every chunk of the word gets its own timer — that desync is
+   what makes it read as broken instead of pulsing */
+.sign-text span{display:inline-block;}
+.l-ju{
+  text-shadow:0 0 4px rgba(255,255,255,.5), 0 0 var(--glow) var(--sea-blue), 0 0 70px rgba(var(--sea-blue-rgb),.6);
+  animation:flick 2.1s infinite;
+}
+.l-n{  /* the dead letter — no glow, just cold metal */
+  color:var(--dark-slate);
+  text-shadow:0 0 6px rgba(var(--sea-blue-rgb),.15);
+  animation:dying 2.9s infinite;
+}
+.l-ky{
+  text-shadow:0 0 4px rgba(255,255,255,.45), 0 0 var(--glow) var(--sea-blue), 0 0 66px rgba(var(--sea-blue-rgb),.55);
+  animation:flick 1.3s infinite;
+}
+.l-a{  /* knocked crooked, and pink */
+  transform:rotate(7deg) translateY(9px);
+  color:var(--glowing-pink);
+  text-shadow:0 0 4px rgba(255,255,255,.4), 0 0 var(--glow) var(--glowing-pink), 0 0 62px rgba(var(--glowing-pink-rgb),.5);
+  animation:flick 2.6s infinite;
+}
+.l-rd{
+  text-shadow:0 0 4px rgba(255,255,255,.45), 0 0 var(--glow) var(--sea-blue), 0 0 66px rgba(var(--sea-blue-rgb),.55);
+  animation:dying 3.8s infinite;
+}
+
+
+/* ══════════════════════════════════════════════════════
+   THE YARD FLOOR — where projects live
+   ══════════════════════════════════════════════════════ */
+.yard{position:relative;max-width:1240px;margin:0 auto;min-height:620px;}
+
+/* handwriting */
+.marker{position:absolute;font-family:'Permanent Marker',cursive;margin:0;}
+.marker-welcome{
+  top:20px;left:2%;max-width:300px;
+  transform:rotate(-4deg);
+  font-size:21px;line-height:1.4;
+  color:var(--air-force-blue);
+  text-shadow:0 0 12px rgba(var(--sea-blue-rgb),.35), 0 1px 0 rgba(0,0,0,.9);
+}
+.marker-hit{
+  bottom:-46px;left:6px;transform:rotate(-6deg);
+  font-size:17px;color:#4e7f8f;white-space:nowrap;
+}
+.marker-hauling{
+  bottom:34px;left:10%;transform:rotate(-13deg);
+  font-size:15px;color:#35606d;
+}
+
+/* Al-Ahli sign, bolted to the wall */
+.ahli-sign{
+  position:absolute;top:8px;right:0;padding:14px 26px 16px;
+  transform:rotate(2.6deg);
+  clip-path:polygon(1% 6%, 99% 0%, 100% 88%, 46% 100%, 3% 93%);
+  background:linear-gradient(168deg, #0b1a22, #050b14);
+  border-top:1px solid rgba(var(--sea-blue-rgb),.12);
+  box-shadow:0 14px 40px rgba(0,0,0,.7);
+}
+.ahli-title{
+  display:block;
+  font-family:'Saira Stencil One',sans-serif;
+  font-size:clamp(15px,1.6vw,22px);
+  letter-spacing:.06em;
+  color:var(--royal);
+  text-shadow:0 0 14px var(--royal-shade);
+  animation:flick 1.9s infinite;
+}
+.ahli-sub{
+  display:block;margin-top:5px;
+  font-family:'Saira Stencil One',sans-serif;
+  font-size:clamp(12px,1.2vw,16px);
+  letter-spacing:.14em;
+  color:var(--ming);
+  opacity:.9;
+}
+
+/* scrap metal lying around */
+.junk{position:absolute;pointer-events:none;}
+.junk-1{
+  top:96px;left:62%;width:110px;height:70px;transform:rotate(-17deg);
+  clip-path:polygon(0% 12%, 88% 0%, 100% 74%, 22% 100%);
+  background:linear-gradient(140deg, #2a1428, #0c0a18);
+  box-shadow:0 10px 24px rgba(0,0,0,.6);
+}
+.junk-2{
+  top:300px;right:12%;width:190px;height:54px;transform:rotate(6deg);
+  clip-path:polygon(0% 0%, 100% 14%, 96% 100%, 4% 84%);
+  background:linear-gradient(100deg, #0a1620, #03040e);
+  box-shadow:0 12px 30px rgba(0,0,0,.65);
+}
+.junk-3{
+  bottom:-40px;left:-60px;width:280px;height:170px;transform:rotate(-11deg);
+  clip-path:polygon(6% 0%, 100% 9%, 92% 100%, 0% 86%);
+  background:linear-gradient(160deg, #150818, #03020e);
+  box-shadow:0 -6px 40px rgba(0,0,0,.6);
+}
+.junk-4{
+  bottom:60px;right:-70px;width:230px;height:230px;border-radius:50%;
+  transform:rotate(14deg);opacity:.85;
+  background:radial-gradient(circle at 38% 34%, #190a1b, #06030f 58%, #020209);
+  box-shadow:inset 0 0 40px rgba(0,0,0,.9), 0 18px 50px rgba(0,0,0,.6);
+}
+
+
+/* ══════════════════════════════════════════════════════
+   PROJECT 001 — the tally box
+   ══════════════════════════════════════════════════════ */
+.tally-rig{
+  position:absolute;top:214px;left:6%;
+  transform:rotate(-5deg);
+  transition:transform .18s cubic-bezier(.3,1.6,.5,1);
+}
+.tally-tag{
+  position:absolute;top:-16px;left:-26px;width:96px;height:26px;
+  transform:rotate(-8deg);
+  background:rgba(var(--sea-blue-rgb),.14);
+  border:1px solid rgba(var(--sea-blue-rgb),.12);
+  box-shadow:0 3px 8px rgba(0,0,0,.5);
+}
+.tally-box{
+  position:relative;cursor:pointer;
+  width:172px;height:172px;padding:0;border:none;
+  background:linear-gradient(152deg, #12222c 0%, #0a1420 48%, #04070f 100%);
+  box-shadow:0 20px 50px rgba(0,0,0,.75), inset 0 0 40px rgba(0,0,0,.7);
+  clip-path:polygon(3% 2%, 98% 0%, 100% 95%, 52% 100%, 2% 97%);
+}
+.tally-box:active{filter:brightness(1.35);}
+.tally-glow{
+  position:absolute;inset:0;
+  background:
+    radial-gradient(circle at 22% 78%, rgba(var(--byzantium-rgb),.55), transparent 52%),
+    radial-gradient(circle at 84% 20%, rgba(var(--sea-blue-rgb),.22), transparent 46%);
+}
+.tally-frame{
+  position:absolute;inset:11px;opacity:.9;
+  border:2px solid var(--glowing-pink);
+  box-shadow:0 0 16px rgba(var(--glowing-pink-rgb),.55), inset 0 0 14px rgba(var(--glowing-pink-rgb),.15);
+  clip-path:polygon(0% 4%, 100% 0%, 98% 100%, 2% 96%);
+  animation:buzz 2.2s infinite;
+}
+.tally-num{
+  position:relative;display:block;
+  font-family:'Space Grotesk',sans-serif;
+  font-size:62px;line-height:172px;
+  color:var(--sea-blue);
+  text-shadow:0 0 18px rgba(var(--sea-blue-rgb),.9);
+}
+
+.tally-readout{
+  position:absolute;top:430px;left:31%;
+  transform:rotate(3deg);
+  font-family:'IBM Plex Mono',monospace;
+  font-size:12px;letter-spacing:.18em;text-transform:uppercase;
+  color:#3a5f6c;
+}
+.scrap-btn{
+  position:absolute;top:462px;left:31%;
+  transform:rotate(3deg);cursor:pointer;
+  background:transparent;
+  border:1px dashed rgba(var(--byzantium-rgb),.9);
+  color:#8a5f80;
+  font-family:'IBM Plex Mono',monospace;
+  font-size:10px;font-weight:500;line-height:1;
+  letter-spacing:.16em;text-transform:uppercase;
+  padding:8px 11px;
+}
+.scrap-btn:hover{color:var(--glowing-pink);border-color:rgba(var(--glowing-pink-rgb),.7);}
+
+/* keyboard users need to see where they are */
+.tally-box:focus-visible,
+.scrap-btn:focus-visible{outline:2px solid var(--glowing-pink);outline-offset:5px;}
+
+/* people who get motion sick can turn all this off in their OS */
+/* ══════════════════════════════════════════════════════
+   THE JESTER MASK — baked into this file so there is no
+   separate image to lose. It is one very long line of
+   gibberish. Nothing below it. Scroll past it.
+   ══════════════════════════════════════════════════════ */
+.jester-img{background-image:url("data:image/webp;base64,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");}
+
+@media (prefers-reduced-motion: reduce){
+  .junkyard,.junkyard *{animation:none !important;transition:none !important;}
+}
+</style>
+</head>
+<body>
+
+<div class="junkyard">
+
+  <!-- ── atmosphere ── -->
+  <div class="grime"></div>
+  <div class="scanlines"></div>
+  <div class="floor-fade"></div>
+
+  <div class="arc arc-1"></div>
+  <div class="arc arc-2"></div>
+  <div class="arc arc-3"></div>
+  <div class="arc arc-4"></div>
+  <div class="arc arc-5"></div>
+
+  <div class="wire wire-l"></div>
+  <div class="wire wire-r"></div>
+
+  <div class="sky-glow"></div>
+
+  <div class="content">
+
+    <div class="status">
+      <span class="status-dot"></span>
+      <span>24 h · online</span>
+    </div>
+
+    <!-- ── THE SIGN ── -->
+    <div class="sign-rig">
+
+      <div class="rod rod-l"></div>
+      <div class="bolt bolt-l"></div>
+      <div class="bolt-spark bolt-spark-l"></div>
+
+      <div class="rod rod-r"></div>
+      <div class="bolt bolt-r"></div>
+      <div class="bolt-spark bolt-spark-r"></div>
+
+      <div class="rod rod-thin-l"></div>
+      <div class="rod rod-thin-r"></div>
+
+      <div class="break-notch"></div>
+      <div class="sparks">
+        <div class="spark-core"></div>
+        <div class="spark-green"></div>
+        <div class="spark-arc"></div>
+        <div class="spark-fall-1"></div>
+        <div class="spark-fall-2"></div>
+      </div>
+
+      <div class="jester-hang">
+        <div class="jester-wire"></div>
+        <div class="jester-img"></div>
+      </div>
+
+      <div class="sign-panel">
+        <div class="panel-tint"></div>
+        <div class="panel-grime"></div>
+        <div class="panel-border"></div>
+        <h1 class="sign-text"><span class="l-ju">Ju</span><span class="l-n">n</span><span class="l-ky">ky</span><span class="l-a">a</span><span class="l-rd">rd</span></h1>
+      </div>
+
+    </div>
+
+    <!-- ── THE YARD — projects go in here ── -->
+    <div class="yard">
+
+      <p class="marker marker-welcome">welcome to<br>the junkyard</p>
+
+      <div class="ahli-sign">
+        <span class="ahli-title">ASIA CHAMPIONS</span>
+        <span class="ahli-sub">AL-AHLI · 24/25 → 25/26</span>
+      </div>
+
+      <div class="junk junk-1"></div>
+      <div class="junk junk-2"></div>
+      <div class="junk junk-3"></div>
+      <div class="junk junk-4"></div>
+
+      <!-- PROJECT 001 -->
+      <div class="tally-rig">
+        <div class="tally-tag"></div>
+        <button class="tally-box">
+          <span class="tally-glow"></span>
+          <span class="tally-frame"></span>
+          <span class="tally-num">0</span>
+        </button>
+        <span class="marker marker-hit">hit it →</span>
+      </div>
+
+      <span class="tally-readout">tally 0 · this run 0</span>
+      <button class="scrap-btn">scrap it</button>
+
+      <span class="marker marker-hauling">keep hauling</span>
+
+    </div>
+
+  </div>
+</div>
+
+<script>
+/* ── PROJECT 001 — the tally box ── */
+
+const tallyBox = document.querySelector('.tally-box');
+const tallyNum = document.querySelector('.tally-num');
+const tallyRig = document.querySelector('.tally-rig');
+const readout  = document.querySelector('.tally-readout');
+const scrapBtn = document.querySelector('.scrap-btn');
+
+/* localStorage is the browser's little notepad — it survives a refresh.
+   Number(...) turns the saved text back into a real number.
+   || 0  means "if there's nothing saved yet, start at zero". */
+let count   = Number(localStorage.getItem('junkyard.tally')) || 0;
+let session = 0;
+
+function draw(){
+  tallyNum.textContent = count;
+  readout.textContent  = 'tally ' + count + ' · this run ' + session;
+}
+
+tallyBox.addEventListener('click', function(){
+  count   = count + 1;
+  session = session + 1;
+  localStorage.setItem('junkyard.tally', count);
+
+  /* knock the box a bit crooked, differently every time */
+  const tilt = -8 + Math.random() * 10;
+  tallyRig.style.transform = 'rotate(' + tilt.toFixed(1) + 'deg)';
+
+  draw();
+});
+
+scrapBtn.addEventListener('click', function(){
+  count = 0;
+  localStorage.setItem('junkyard.tally', 0);
+  tallyRig.style.transform = 'rotate(-5deg)';
+  draw();
+});
+
+draw();
+</script>
+
+</body>
+</html>
